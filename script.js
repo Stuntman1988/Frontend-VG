@@ -27,10 +27,7 @@ function addItemToCart(inId) {
     }
 
     if (exists) {
-        let quantity = temp[index].qt + 1;
-        temp[index].qt = quantity;
-        localStorage.setItem('prodCart', JSON.stringify(temp));
-
+        changeQuantityP(inId);
     } else {
         fetch(`https://fakestoreapi.com/products/${inId}`)
             .then(res => {
@@ -43,7 +40,8 @@ function addItemToCart(inId) {
                     img: imageUrl,
                     title: product.title,
                     price: product.price,
-                    qt: 1
+                    qt: 1,
+                    totPrice: product.price
                 };
                 temp.push(product);
                 localStorage.setItem('prodCart', JSON.stringify(temp));
@@ -73,13 +71,14 @@ function updateCart() {
             inText += `
         <div class="row align-items-center">
         <div class="col-2"><img src="${temp[i].img}" alt="pic" id="pictureCart"></div>
+        <div class="col-1"></div>
         <div class="col-3">${temp[i].title}</div>
-        <div class="col-1">${temp[i].price}</div>
+        <div class="col-1">$${temp[i].price}<br>$${temp[i].totPrice}</div>
         <div class="col-1"></div>
         <div class="col-3">${temp[i].qt}<button type="button" onclick="changeQuantityP(${temp[i].id})" id="chgBtn">+</button>
         <button type="button" onclick="changeQuantityM(${temp[i].id})" id="chgBtn">-</button></div>
-        <div class="col-1"></div>
         <div class="col-1"><button class="btn btn-danger" type="button" onclick="removeItemFromCart(${temp[i].id})">REMOVE</button></div>
+       
         </div><hr>`;
 
             document.getElementById('cart-item').innerHTML = inText;
@@ -94,6 +93,7 @@ function changeQuantityP(inId) {
         if (temp[i].id == inId) {
             let quantity = temp[i].qt + 1;
             temp[i].qt = quantity;
+            temp[i].totPrice = temp[i].qt * temp[i].price;
             localStorage.setItem('prodCart', JSON.stringify(temp));
         }
     }
@@ -106,6 +106,7 @@ function changeQuantityM(inId) {
         if (temp[i].id == inId && temp[i].qt != 1) {
             let quantity = temp[i].qt - 1;
             temp[i].qt = quantity;
+            temp[i].totPrice = temp[i].qt * temp[i].price;
             localStorage.setItem('prodCart', JSON.stringify(temp));
         }
     }
@@ -269,19 +270,3 @@ function validate() {
         window.location.href = "confirmed.html";
     }
 }
-
-/* 
-    console.log("WHATTS2")
-    document.getElementById('confirmed-name').innerHTML = "<b>Name: </b>" + localStorage.getItem("name");
-    document.getElementById('confirmed-street').innerHTML = "<b>Street: </b>" + localStorage.getItem("street");
-    document.getElementById('confirmed-zip').innerHTML = "<b>Zip code: </b>" + localStorage.getItem("zip");
-    document.getElementById('confirmed-city').innerHTML = "<b>City: </b>" + localStorage.getItem("city");
-    document.getElementById('confirmed-email').innerHTML = "<b>E-mail: </b>" + localStorage.getItem("email");
-    document.getElementById('confirmed-phone').innerHTML = "<b>Phone: </b>" + localStorage.getItem("phone");
-
-document.getElementById('confirmed-img').setAttribute('src', localStorage.getItem('product-img'));
-    document.getElementById('confirmed-title').innerHTML = localStorage.getItem('product-title');
-    document.getElementById('confirmed-category').innerHTML = localStorage.getItem('product-category');
-    document.getElementById('confirmed-description').innerHTML = localStorage.getItem('product-description');
-    document.getElementById('confirmed-price').innerHTML = '$' + localStorage.getItem('product-price'); */
-
