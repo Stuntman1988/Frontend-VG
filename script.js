@@ -52,12 +52,13 @@ function updateCart() {
         document.querySelector('#purchasebtn').disabled = true;
     } else {
         for (let i = 0; i < temp.length; i++) {
+            let totPrice = parseFloat(temp[i].totPrice).toFixed(2);
             inText += `
         <div class="row align-items-center">
         <div class="col-2"><img src="${temp[i].img}" alt="pic" id="pictureCart"></div>
         <div class="col-1"></div>
         <div class="col-3">${temp[i].title}</div>
-        <div class="col-1">$${temp[i].price}<br>$${temp[i].totPrice}</div>
+        <div class="col-1">$${temp[i].price}<br>$${totPrice}</div>
         <div class="col-1"></div>
         <div class="col-3">${temp[i].qt}<button type="button" onclick="changeQuantityP(${temp[i].id})" id="chgBtn">+</button>
         <button type="button" onclick="changeQuantityM(${temp[i].id})" id="chgBtn">-</button></div>
