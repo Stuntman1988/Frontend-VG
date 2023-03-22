@@ -146,9 +146,10 @@ body {
 }
 
 .cFront{
-    background-color: #566f52bd;
+    background-color: #fefae0c0;
     border-radius: 15px;
     padding: 10px;
+    color: #566f52;
 }
 
 #pictureCart {

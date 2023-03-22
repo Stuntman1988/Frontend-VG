@@ -1,20 +1,3 @@
-
-function myFunction(id) {
-    localStorage.setItem('product-id', id);
-    fetch(`https://fakestoreapi.com/products/${id}`)
-        .then(res => {
-            return res.json();
-        })
-        .then(product => {
-            const imageUrl = product.image;
-            localStorage.setItem('product-img', imageUrl);
-            localStorage.setItem("product-title", product.title);
-            localStorage.setItem('product-category', product.category);
-            localStorage.setItem('product-description', product.description);
-            localStorage.setItem('product-price', product.price);
-        })
-}
-
 function addItemToCart(inId) {
     let temp = JSON.parse(localStorage.getItem('prodCart')) || [];
     let exists = false;
@@ -66,6 +49,7 @@ function updateCart() {
     console.log(temp)
     if (temp.length == 0) {
         document.getElementById('cart-item').innerHTML = inText;
+        document.querySelector('#purchasebtn').disabled = true;
     } else {
         for (let i = 0; i < temp.length; i++) {
             inText += `
@@ -78,7 +62,6 @@ function updateCart() {
         <div class="col-3">${temp[i].qt}<button type="button" onclick="changeQuantityP(${temp[i].id})" id="chgBtn">+</button>
         <button type="button" onclick="changeQuantityM(${temp[i].id})" id="chgBtn">-</button></div>
         <div class="col-1"><button class="btn btn-danger" type="button" onclick="removeItemFromCart(${temp[i].id})">REMOVE</button></div>
-       
         </div><hr>`;
 
             document.getElementById('cart-item').innerHTML = inText;
@@ -167,9 +150,6 @@ fetch('https://fakestoreapi.com/products')
             productCol.classList.add('col-md-3');
             productCol.innerHTML = markup;
 
-            // const productCol2 = document.createElement('div');
-            //productCol2.classList.add('col-md-3');
-            // productCol2.innerHTML = markup;
             document.querySelector('#product-row').appendChild(productCol);
 
             const moreLink = productCol.querySelector('.more');
@@ -204,7 +184,6 @@ fetch('https://fakestoreapi.com/products')
     })
 
 updateCart();
-
 
 function validate() {
     let name = document.getElementById('name').value;
