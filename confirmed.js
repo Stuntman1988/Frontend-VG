@@ -17,13 +17,14 @@ function updateCart() {
         document.getElementById('cart-item').innerHTML = inText;
     } else {
         for (let i = 0; i < temp.length; i++) {
+            let totPrice = parseFloat(temp[i].totPrice).toFixed(2);
             inText += `
             <div class="row">
             <div class="col-2"><img src="${temp[i].img}" alt="pic" id="pictureCart"></div>
             
             <div class="col-3">${temp[i].title}</div>
             <div class="col-1"></div>
-            <div class="col-1">$${temp[i].price}<br>$${temp[i].totPrice}</div>
+            <div class="col-1">$${temp[i].price}<br>$${totPrice}</div>
             <div class="col-1"></div>
             <div class="col-1">${temp[i].qt}</div>
             <div class="col-3"></div>
