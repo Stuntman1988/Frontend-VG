@@ -170,3 +170,7 @@ body {
     border-radius: 4px;
     background-color: #566f5270;
 }
+
+#cartTitle {
+    padding-top: 20px;
+}
