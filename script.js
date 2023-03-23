@@ -53,16 +53,16 @@ function updateCart() {
     } else {
         for (let i = 0; i < temp.length; i++) {
             let totPrice = parseFloat(temp[i].totPrice).toFixed(2);
-            inText += `
+            inText += `  
         <div class="row align-items-center">
-        <div class="col-2"><img src="${temp[i].img}" alt="pic" id="pictureCart"></div>
-        <div class="col-1"></div>
-        <div class="col-3">${temp[i].title}</div>
-        <div class="col-1">$${temp[i].price}<br>$${totPrice}</div>
-        <div class="col-1"></div>
-        <div class="col-3">${temp[i].qt}<button type="button" onclick="changeQuantityP(${temp[i].id})" id="chgBtn">+</button>
+        <div class="col" id="cart-items"><img src="${temp[i].img}" alt="pic" id="pictureCart"></div>
+        <div class="col" id="cart-items">${temp[i].title}</div>
+        <div class="col-1" id="cart-items"></div>
+        <div class="col" id="cart-items">$${temp[i].price}<br>$${totPrice}</div>
+        <div class="col" id="cart-items">${temp[i].qt}</div>
+        <div class="col-2" id="cart-items"><button type="button" onclick="changeQuantityP(${temp[i].id})" id="chgBtn">+</button>
         <button type="button" onclick="changeQuantityM(${temp[i].id})" id="chgBtn">-</button></div>
-        <div class="col-1"><button class="btn btn-danger" type="button" onclick="removeItemFromCart(${temp[i].id})">REMOVE</button></div>
+        <div class="col" id="cart-items"><button class="btn btn-danger" type="button" onclick="removeItemFromCart(${temp[i].id})">REMOVE</button></div>
         </div><hr>`;
 
             document.getElementById('cart-item').innerHTML = inText;

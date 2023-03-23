@@ -157,14 +157,10 @@ body {
 }
 
 #cont{
-    max-width: 60%;
+    max-width: 75%;
 }
 
-@media (max-width: 900px) {
-    #cont{
-        max-width: 95%;
-    }
-}
+
 #chgBtn {
     width: 25px;
     margin-left: 10px;
@@ -172,7 +168,18 @@ body {
     background-color: #566f5270;
 }
 
+@media (max-width: 600px) {
+    #cont{
+        max-width: 95%;
+    }
+}
+
 #cartTitle {
     padding-top: 20px;
+}
+
+#cart-items{
+    background-color: transparent;
+    box-shadow: none;
 }
 
