@@ -80,20 +80,21 @@ body {
     text-decoration: none;
     border: none;
     padding: 3px 7px;
-
-
     border-radius: 0.8rem;
     box-shadow: 0 0 0.3rem #222;
     background-color: #A9B388;
-    color: #FEFAE0
+    color: #FEFAE0;
 }
 
 .add-to-cart:hover {
     color: #566f52;
     transition: 0.5s;
-
 }
 
+.add-to-cart:active{
+    background-color: blue;
+    transition: 0s;
+}
 
 #pricecon {
     background-color: white;
@@ -103,7 +104,6 @@ body {
 
 .procuct-price-container {
     align-self: stretch;
-
 }
 
 .more {
